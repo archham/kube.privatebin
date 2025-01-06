@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: privatebin
+  namespace: __NAMESPACE__
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: privatebin
+  template:
+    metadata:
+      labels:
+        app: privatebin
+    spec:
+      containers:
+        - name: privatebin
+          image: privatebin/nginx-fpm-alpine:latest
+          env:
+            - name: CONFIG_PATH
+              value: "/srv/data/cfg"
+          volumeMounts:
+            - name: data
+              mountPath: /srv/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-pvc
+

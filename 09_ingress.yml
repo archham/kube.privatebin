@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: privatebin
+  namespace: __NAMESPACE__
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: __FQDN__
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: privatebin
+                port:
+                  number: 8080
+  tls:
+    - hosts:
+        - __FQDN__
+      secretName: privatebin-tls
+
