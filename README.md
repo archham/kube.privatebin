@@ -5,7 +5,7 @@
 NAMESPACE=privatebin
 
 # Public URL
-FQDN=tmp.app.bitbull.ch
+FQDN=ex.domain.tld
 ```
 
 ## create runtime config from template
