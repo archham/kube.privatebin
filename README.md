@@ -5,7 +5,7 @@
 NAMESPACE=privatebin
 
 # Public URL
-FQDN=ex.domain.tld
+FQDN=privatebin.domain.tld
 ```
 
 ## create runtime config from template
@@ -37,17 +37,18 @@ DONE
 all templates created in ./runtime
 please review them and apply config
 
+cd ./runtime/
 for y in *.yml
 do
-  echo \$y
-  kubectl apply -f \$y
+  echo $y
+  kubectl apply -f $y
 done"
 
 ```
 ## configure application once
 This is needed to create permanent config in data volume
 
-* `kubectl exec -it pirvatebin-xyz -- /bin/bash`
+* `kubectl exec -it pirvatebin-xyz -- /bin/sh`
 
 ```
 test -f /srv/data/cfg || cp -rv /srv/cfg /srv/data/cfg
